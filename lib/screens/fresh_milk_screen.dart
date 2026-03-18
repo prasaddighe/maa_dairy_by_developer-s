@@ -1,111 +1,84 @@
 import 'package:app/screens/fast_delivery_screen.dart';
 import 'package:flutter/material.dart';
-
-class FreshMilk extends StatefulWidget {
+class FreshMilk extends StatelessWidget {
   const FreshMilk({super.key});
-
-  @override
-  State<FreshMilk> createState() => _FreshMilkState();
-}
-
-class _FreshMilkState extends State<FreshMilk> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFEAF2F3),
+      backgroundColor: const Color(0xFFF2FAFF),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.only(top: 10.0),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => Fastdelivery(),
-                        ),
-                      );
-                    },
-                    child: const Text(
-                      "Skip ",
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.normal,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
-                  Icon(
-                    Icons.arrow_forward_ios,
-                    color: Colors.black,
-                    size: 16,
-                  ),
-                ],
-              ),
-              const SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  Text(
-                    "Maa Dairy",
-                    style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFF37448B),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 20),
-              Center(
-                child: Image.asset(
-                  '../../assets/Milk.png',
-                  height: 140,
-                ),
-              ),
-              const SizedBox(height: 20),
-              const Text(
-                "Fresh Milk",
-                style: TextStyle(
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.blue,
-                ),
-              ),
-              const SizedBox(height: 15),
-              Center(
-                child: SizedBox(
-                  width: 260,
-                  child: const Text(
-                    "Milk is the best in the market.\n"
-                    "Don't wait; just drink it.\n"
-                    "A glass of milk is a must in every diet.",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Color(0xFF669814),
-                      fontWeight: FontWeight.w600,
-                      height: 1.5,
-                    ),
-                  ),
-                ),
-              ),
-              const Spacer(),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 40),
+              SizedBox(height: 20),
+              Align(
+                alignment: Alignment.topRight,
                 child: InkWell(
+                  borderRadius: BorderRadius.circular(8),
                   onTap: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => Fastdelivery()),
                     );
                   },
-                  child: Container(
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: const [
+                      Text(
+                        "Skip",
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      SizedBox(width: 5),
+                      Icon(Icons.arrow_forward_ios, size: 14),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(height: 20),
+              const Text(
+                "Maa Dairy",
+                style: TextStyle(
+                  fontSize: 32,
+                  fontWeight: FontWeight.w600,
+                  color: Color(0xFF37448B),
+                ),
+              ),
+              const SizedBox(height: 30),
+              Image.asset('../../assets/Milk.png', height: 200),
+              const SizedBox(height: 20),
+              const Text(
+                "Fresh Milk",
+                style: TextStyle(
+                  fontSize: 36,
+                  fontWeight: FontWeight.w600,
+                  color: Color.fromRGBO(33, 175, 255, 1),
+                ),
+              ),
+              const SizedBox(height: 15),
+              const Text(
+                "Milk is the best in the marke\nDon't wait; just drink it. \nA glass of milk is a must in \nevery diet.",
+                textAlign: TextAlign.start,
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Color.fromRGBO(102, 152, 20, 1),
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              Spacer(),
+              InkWell(
+                borderRadius: BorderRadius.circular(12),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Fastdelivery()),
+                  );
+                },
+                   child: Container(
                     height: 50,
                     width: 50,
                     decoration: BoxDecoration(
@@ -125,8 +98,8 @@ class _FreshMilkState extends State<FreshMilk> {
                       color: Color(0xFF37448B),
                     ),
                   ),
-                ),
-              ),
+            
+             ),
             ],
           ),
         ),
