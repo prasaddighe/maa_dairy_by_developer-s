@@ -1,168 +1,226 @@
-// import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 
-// class WelcomeScreen extends StatefulWidget {
-//   const WelcomeScreen({super.key});
+class WelcomeScreen extends StatefulWidget {
+  const WelcomeScreen({super.key});
 
-//   @override
-//   State<WelcomeScreen> createState() => _WelcomeScreenState();
-// }
+  @override
+  State<WelcomeScreen> createState() => _WelcomeScreenState();
+}
 
-// class _WelcomeScreenState extends State<WelcomeScreen> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       backgroundColor: const Color(0xFFE6F0F5),
-//       body: SafeArea(
-//         child: Column(
-//           children: [
-//             Container(
-//               width: double.infinity,
-//               padding: const EdgeInsets.symmetric(vertical: 20),
-//               decoration: const BoxDecoration(
-//                 color: Color(0xFFA7E063),
-//                 borderRadius: BorderRadius.only(
-//                   bottomLeft: Radius.circular(30),
-//                   bottomRight: Radius.circular(30),
-//                 ),
-//               ),
-//               child: Column(
-//                 children: [
-//                   Align(
-//                     alignment: Alignment.topRight,
-//                      child: Row(
-//                     mainAxisSize: MainAxisSize.min,
-//                     children: const [
-//                       Text(
-//                         "Skip",
-//                         style: TextStyle(
-//                           fontSize: 16,
-//                           fontWeight: FontWeight.w600,
-//                         ),
-//                       ),
-//                       SizedBox(width: 5),
-//                       Icon(Icons.arrow_forward_ios, size: 14),
-//                     ],
-//                   ),
-//                   ),
+class _WelcomeScreenState extends State<WelcomeScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: const Color.fromRGBO(190, 255, 125, 1),
+      body: SafeArea(
+        bottom: false,
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+              child: Align(
+                alignment: Alignment.topRight,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: const [
+                    Text(
+                      "Guest User",
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
+                    SizedBox(width: 4),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      size: 14,
+                      color: Colors.black,
+                    ),
+                  ],
+                ),
+              ),
+            ),
 
-//                   const SizedBox(height: 10),
+            const SizedBox(height: 5),
+            const Text(
+              "Maa Dairy",
+              style: TextStyle(
+                fontSize: 40,
+                fontWeight: FontWeight.w700,
+                color: Color.fromRGBO(78, 67, 46, 1), 
+                fontFamily: 'serif',
+                letterSpacing: 1.2,
+              ),
+            ),
 
-//                   const Text(
-//                     "Maa Dairy",
-//                     style: TextStyle(
-//                       fontSize: 24,
-//                       fontWeight: FontWeight.bold,
-//                     ),
-//                   ),
+            const SizedBox(height: 10),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Image.asset(
+                '../../assets/welcome.png',
+                height: 180,
+                fit: BoxFit.contain,
+              ),
+            ),
 
-//                   const SizedBox(height: 15),
-//                   Image.asset(
-//                     '../../assets/welcome.png', 
-//                     height: 120,
-//                   ),
-//                 ],
-//               ),
-//             ),
+            const SizedBox(height: 20),
+            Expanded(
+              child: Container(
+                width: double.infinity,
+                padding: const EdgeInsets.only(top: 35, left: 25, right: 25, bottom: 20),
+                decoration: const BoxDecoration(
+                  color: Color(0xFFF3F7FA),
+                  borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(50), 
+                  ),
+                ),
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      const Text(
+                        "Welcome",
+                        style: TextStyle(
+                          fontSize: 32,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.black,
+                        ),
+                      ),
+                      
+                      const SizedBox(height: 8),
+                      
+                      const Text(
+                        "Fresh Day's For You",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500,
+                          color: Color.fromRGBO(120, 107, 81, 1),
+                        ),
+                      ),
+                      
+                      const SizedBox(height: 30),
+                      Container(
+                        decoration: BoxDecoration(
+                          color: const Color(0xFFE6E6E6),
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(color: Colors.black54, width: 0.8),
+                        ),
+                        child: const TextField(
+                          decoration: InputDecoration(
+                            hintText: "Enter Mobile Number", 
+                            hintStyle: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 15,
+                              fontWeight: FontWeight.w500,
+                            ),
+                            border: InputBorder.none,
+                            contentPadding: EdgeInsets.symmetric(
+                              horizontal: 16,
+                              vertical: 16,
+                            ),
+                          ),
+                          keyboardType: TextInputType.phone,
+                        ),
+                      ),
 
-//             const SizedBox(height: 20),
-//             Expanded(
-//               child: Container(
-//                 width: double.infinity,
-//                 padding: const EdgeInsets.all(20),
-//                 decoration: const BoxDecoration(
-//                   color: Color(0xFFE6F0F5),
-//                   borderRadius: BorderRadius.only(
-//                     topLeft: Radius.circular(40),
-//                     topRight: Radius.circular(40),
-//                   ),
-//                 ),
-//                 child: Column(
-//                   children: [
-//                     const Text(
-//                       "Welcome",
-//                       style: TextStyle(
-//                         fontSize: 22,
-//                         fontWeight: FontWeight.bold,
-//                       ),
-//                     ),
+                      const SizedBox(height: 24),
+                      SizedBox(
+                        width: double.infinity,
+                        height: 52,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color.fromRGBO(120, 107, 81, 1), 
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            elevation: 0,
+                          ),
+                          onPressed: () {},
+                          child: const Text(
+                            "Next",
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w900,
+                              color: Colors.black, 
+                            ),
+                          ),
+                        ),
+                      ),
 
-//                     const SizedBox(height: 5),
+                      const SizedBox(height: 24),
 
-//                     const Text(
-//                       "Fresh Day’s For You",
-//                       style: TextStyle(color: Colors.grey),
-//                     ),
+                      const Text(
+                        "Or",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w900,
+                          color: Colors.black,
+                        ),
+                      ),
 
-//                     const SizedBox(height: 20),
+                      const SizedBox(height: 20),
 
-//                     TextField(
-//                       decoration: InputDecoration(
-//                         hintText: "Enter Mobile Number",
-//                         filled: true,
-//                         fillColor: Colors.white,
-//                         contentPadding: const EdgeInsets.symmetric(
-//                             horizontal: 15, vertical: 12),
-//                         border: OutlineInputBorder(
-//                           borderRadius: BorderRadius.circular(10),
-//                         ),
-//                       ),
-//                       keyboardType: TextInputType.phone,
-//                     ),
+                      Row(
+                        children: [
+                          _socialButton(
+                            "Google",
+                            "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/1024px-Google_%22G%22_logo.svg.png",
+                            Icons.g_mobiledata,
+                          ),
+                          const SizedBox(width: 16),
+                          _socialButton(
+                            "Instagram", 
+                            "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/1024px-Instagram_icon.png",
+                            Icons.camera_alt,
+                          ),
+                        ],
+                      ),
+                      
+                      const SizedBox(height: 20),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 
-//                     const SizedBox(height: 20),
-
-//                     SizedBox(
-//                       width: double.infinity,
-//                       height: 45,
-//                       child: ElevatedButton(
-//                         style: ElevatedButton.styleFrom(
-//                           backgroundColor: const Color(0xFF7A6A4F),
-//                           shape: RoundedRectangleBorder(
-//                             borderRadius: BorderRadius.circular(10),
-//                           ),
-//                         ),
-//                         onPressed: () {},
-//                         child: const Text("Next"),
-//                       ),
-//                     ),
-
-//                     const SizedBox(height: 15),
-
-//                     const Text("Or"),
-
-//                     const SizedBox(height: 15),
-
-//                     Row(
-//                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//                       children: [
-//                         _socialButton("Google", Icons.g_mobiledata),
-//                         _socialButton("Instagram", Icons.camera_alt),
-//                       ],
-//                     ),
-//                   ],
-//                 ),
-//               ),
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-
-//   Widget _socialButton(String text, IconData icon) {
-//     return Container(
-//       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-//       decoration: BoxDecoration(
-//         color: Colors.white,
-//         borderRadius: BorderRadius.circular(10),
-//       ),
-//       child: Row(
-//         children: [
-//           Icon(icon, size: 20),
-//           const SizedBox(width: 5),
-//           Text(text),
-//         ],
-//       ),
-//     );
-//   }
-// }
+  Widget _socialButton(String text, String imageUrl, IconData fallbackIcon) {
+    return Expanded(
+      child: Container(
+        height: 50,
+        decoration: BoxDecoration(
+          color: const Color(0xFFEBEBEB),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.network(
+              imageUrl,
+              height: 22,
+              width: 22,
+              errorBuilder: (context, error, stackTrace) => Icon(
+                fallbackIcon,
+                size: 24,
+                color: Colors.black87,
+              ),
+            ),
+            const SizedBox(width: 10),
+            Text(
+              text,
+              style: const TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.w800,
+                color: Color(0xFF4C4C4C),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
