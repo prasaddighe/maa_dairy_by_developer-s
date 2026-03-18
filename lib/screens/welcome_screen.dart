@@ -49,7 +49,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 fontSize: 40,
                 fontWeight: FontWeight.w700,
                 color: Color.fromRGBO(78, 67, 46, 1), 
-                fontFamily: 'serif',
                 letterSpacing: 1.2,
               ),
             ),
