@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:app/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -65,7 +64,6 @@ class LoginController extends GetxController {
           backgroundColor: Colors.green,
           colorText: Colors.white,
         );
-        Get.offAll(() =>  HomeScreen());
       } else {
         final errorData = jsonDecode(response.body);
 
@@ -202,7 +200,6 @@ class LoginController extends GetxController {
           backgroundColor: Colors.green,
           colorText: Colors.white,
         );
-        Get.offAll(() => HomeScreen());
       } else {
         final errorData = jsonDecode(response.body);
         Get.snackbar(
