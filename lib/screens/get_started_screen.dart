@@ -50,7 +50,7 @@ class GetStartedScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 30),
-              Image.asset('../../assets/returnpocket.png', height: 200),
+              Image.asset('assets/returnpocket.png', height: 200),
               const SizedBox(height: 20),
               const Text(
                 "Return Pocket",
