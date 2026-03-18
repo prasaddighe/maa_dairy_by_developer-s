@@ -56,7 +56,6 @@ class GetStartedScreen extends StatelessWidget {
                 "Return Pocket",
                 style: TextStyle(
                   fontSize: 36,
-                  fontFamily: 'Poppins',
                   fontWeight: FontWeight.w600,
                   color: Color.fromRGBO(33, 175, 255, 1),
                 ),
@@ -67,7 +66,6 @@ class GetStartedScreen extends StatelessWidget {
                 textAlign: TextAlign.start,
                 style: TextStyle(
                   fontSize: 20,
-                  fontFamily: 'Poppins',
                   color: Color.fromRGBO(102, 152, 20, 1),
                   fontWeight: FontWeight.w600,
                 ),
@@ -96,7 +94,6 @@ class GetStartedScreen extends StatelessWidget {
                       fontSize: 18,
                       color: Color(0xFF37448B),
                       fontWeight: FontWeight.w600,
-                      fontFamily: 'Poppins',
                     ),
                   ),
                 ),
