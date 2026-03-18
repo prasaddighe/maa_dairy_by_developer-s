@@ -58,7 +58,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Image.asset(
-                '../../assets/welcome.png',
+                'assets/welcome.png',
                 height: 180,
                 fit: BoxFit.contain,
               ),

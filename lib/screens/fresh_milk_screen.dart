@@ -49,7 +49,7 @@ class FreshMilk extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 30),
-              Image.asset('../../assets/Milk.png', height: 200),
+              Image.asset('assets/Milk.png', height: 200),
               const SizedBox(height: 20),
               const Text(
                 "Fresh Milk",
