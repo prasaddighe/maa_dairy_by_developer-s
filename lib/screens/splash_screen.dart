@@ -17,20 +17,21 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void _navigateToLogin() async {
-    await Future.delayed(const Duration(seconds: 10));
-     Get.off(() => FreshMilk());
+    await Future.delayed(const Duration(seconds: 5));
+    Get.off(() => FreshMilk());
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromRGBO(190, 255, 125, 1),
-      body: Center(
-        child: Row(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset('../../assets/cow.png', width: 120),
-
+            Image.asset('assets/cow.png', width: 120),
             const SizedBox(width: 15),
             const Text(
               "Maa\nDairy",
@@ -42,6 +43,12 @@ class _SplashScreenState extends State<SplashScreen> {
             ),
           ],
         ),
+          const SizedBox(height: 40),
+          const CircularProgressIndicator(
+            color: Color.fromRGBO(120, 107, 81, 1),
+            strokeWidth: 3,
+          ),
+        ],
       ),
     );
   }
