@@ -1,3 +1,4 @@
+import 'package:app/screens/otp_screen.dart';
 import 'package:flutter/material.dart';
 
 class WelcomeScreen extends StatefulWidget {
@@ -8,6 +9,14 @@ class WelcomeScreen extends StatefulWidget {
 }
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
+  final TextEditingController _mobileController = TextEditingController();
+
+  @override
+  void dispose() {
+    _mobileController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,7 +80,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 decoration: const BoxDecoration(
                   color: Color(0xFFF3F7FA),
                   borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(50), 
+                    topRight: Radius.circular(55),
                   ),
                 ),
                 child: SingleChildScrollView(
@@ -85,7 +94,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                           color: Colors.black,
                         ),
                       ),
-                      
                       const SizedBox(height: 8),
                       
                       const Text(
@@ -96,7 +104,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                           color: Color.fromRGBO(120, 107, 81, 1),
                         ),
                       ),
-                      
                       const SizedBox(height: 30),
                       Container(
                         decoration: BoxDecoration(
@@ -104,9 +111,11 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                           borderRadius: BorderRadius.circular(10),
                           border: Border.all(color: Colors.black54, width: 0.8),
                         ),
-                        child: const TextField(
-                          decoration: InputDecoration(
-                            hintText: "Enter Mobile Number", 
+                        child: TextField(
+                          controller: _mobileController,
+                          keyboardType: TextInputType.phone,
+                          decoration: const InputDecoration(
+                            hintText: "Enter Mobile Number",
                             hintStyle: TextStyle(
                               color: Colors.grey,
                               fontSize: 15,
@@ -118,7 +127,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                               vertical: 16,
                             ),
                           ),
-                          keyboardType: TextInputType.phone,
                         ),
                       ),
 
@@ -134,18 +142,35 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                             ),
                             elevation: 0,
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            if (_mobileController.text.length == 10) {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      const OTPVerificationScreen(),
+                                ),
+                              );
+                            } else {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Text(
+                                    "Please enter valid 10 digit mobile number",
+                                  ),
+                                ),
+                              );
+                            }
+                          },
                           child: const Text(
                             "Next",
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w900,
-                              color: Colors.black, 
+                              color: Colors.black,
                             ),
                           ),
                         ),
                       ),
-
                       const SizedBox(height: 24),
 
                       const Text(
@@ -158,23 +183,23 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       ),
 
                       const SizedBox(height: 20),
-
+              
                       Row(
                         children: [
                           _socialButton(
                             "Google",
-                            "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/1024px-Google_%22G%22_logo.svg.png",
+                            "../../assets/google.png",
                             Icons.g_mobiledata,
                           ),
                           const SizedBox(width: 16),
                           _socialButton(
-                            "Instagram", 
-                            "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/1024px-Instagram_icon.png",
+                            "Instagram",
+                            "../../assets/instagram.png",
                             Icons.camera_alt,
                           ),
                         ],
                       ),
-                      
+
                       const SizedBox(height: 20),
                     ],
                   ),
