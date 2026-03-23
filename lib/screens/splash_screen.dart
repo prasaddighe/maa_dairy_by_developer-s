@@ -1,4 +1,4 @@
-import 'package:app/screens/fresh_milk_screen.dart';
+import 'package:app/screens/outlook_screens.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -18,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void _navigateToLogin() async {
     await Future.delayed(const Duration(seconds: 5));
-    Get.off(() => FreshMilk());
+    Get.off(() => const OutlookScreens()); 
   }
 
   @override
