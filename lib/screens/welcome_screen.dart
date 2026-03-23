@@ -188,13 +188,13 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                         children: [
                           _socialButton(
                             "Google",
-                            "../../assets/google.png",
+                            "assets/google.png",
                             Icons.g_mobiledata,
                           ),
                           const SizedBox(width: 16),
                           _socialButton(
                             "Instagram",
-                            "../../assets/instagram.png",
+                            "assets/instagram.png",
                             Icons.camera_alt,
                           ),
                         ],
