@@ -1,6 +1,7 @@
 import 'package:app/screens/outlook_screens.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -44,9 +45,9 @@ class _SplashScreenState extends State<SplashScreen> {
           ],
         ),
           const SizedBox(height: 40),
-          const CircularProgressIndicator(
-            color: Color.fromRGBO(120, 107, 81, 1),
-            strokeWidth: 3,
+          LoadingAnimationWidget.horizontalRotatingDots(
+            color: const Color.fromRGBO(120, 107, 81, 1),
+            size: 50,
           ),
         ],
       ),
