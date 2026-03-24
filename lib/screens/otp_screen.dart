@@ -1,5 +1,7 @@
+import 'package:app/controller/login_controller.dart';
 import 'package:app/screens/home_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:pinput/pinput.dart';
 
 class OTPVerificationScreen extends StatefulWidget {
@@ -10,35 +12,18 @@ class OTPVerificationScreen extends StatefulWidget {
 }
 
 class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
-  final int otpLength = 5;
-  final TextEditingController _pinController = TextEditingController();
-  @override
-  void dispose() {
-    _pinController.dispose();
-    super.dispose();
-  }
+  final int otpLength = 6;
+  final LoginController _loginController = Get.find<LoginController>();
 
   void _onSubmit() {
-    String otp = _pinController.text;
-
-    if (otp.length == otpLength) {
-      print("Entered OTP: $otp");
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const HomeScreen()),
-      );
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Please enter complete OTP")),
-      );
-    }
+    _loginController.verifyOtp();
   }
 
   @override
   Widget build(BuildContext context) {
     final defaultPinTheme = PinTheme(
-      width: 54,
-      height: 50,
+      width: 45,
+      height: 45,
       textStyle: const TextStyle(
         fontSize: 22,
         fontWeight: FontWeight.bold,
@@ -145,10 +130,10 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
                         ),
                       ),
                       const SizedBox(height: 8),
-                      const Text(
-                        "Enter digit verification code sent to\nYour mobile no. +91 - - - - - - - -",
+                      Text(
+                        "Enter digit verification code sent to\nYour mobile no. +91 ${_loginController.mobileController.text}",
                         textAlign: TextAlign.center,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w500,
                           color: Color.fromRGBO(120, 107, 81, 1),
@@ -158,7 +143,7 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
                       const SizedBox(height: 30),
                       Pinput(
                         length: otpLength,
-                        controller: _pinController,
+                        controller: _loginController.otpController,
                         defaultPinTheme: defaultPinTheme,
                         focusedPinTheme: focusedPinTheme,
                         submittedPinTheme: submittedPinTheme,
@@ -173,7 +158,7 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
                         alignment: Alignment.centerRight,
                         child: GestureDetector(
                           onTap: () {
-                            _pinController.clear();
+                            _loginController.otpController.clear();
                           },
                           child: const Text(
                             "Resend OTP",
@@ -187,7 +172,7 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
                         ),
                       ),
                       const SizedBox(height: 24),
-                      SizedBox(
+                      Obx(() => SizedBox(
                         width: double.infinity,
                         height: 52,
                         child: ElevatedButton(
@@ -198,8 +183,19 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
                             ),
                             elevation: 0,
                           ),
-                          onPressed: _onSubmit,
-                          child: const Text(
+                          onPressed: _loginController.isLoading.value
+                              ? null
+                              : _onSubmit,
+                          child: _loginController.isLoading.value
+                              ? const SizedBox(
+                                  height: 20,
+                                  width: 20,
+                                  child: CircularProgressIndicator(
+                                    color: Colors.black,
+                                    strokeWidth: 2,
+                                  ),
+                                )
+                              : const Text(
                             "Next",
                             style: TextStyle(
                               fontSize: 16,
@@ -208,7 +204,7 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
                             ),
                           ),
                         ),
-                      ),
+                      )),
                       const SizedBox(height: 20),
                     ],
                   ),
