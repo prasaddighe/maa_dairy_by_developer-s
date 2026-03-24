@@ -1,6 +1,8 @@
+import 'package:app/controller/login_controller.dart';
 import 'package:app/screens/otp_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
@@ -10,12 +12,12 @@ class WelcomeScreen extends StatefulWidget {
 }
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
-  final TextEditingController _mobileController = TextEditingController();
+  final LoginController _loginController = Get.put(LoginController());
 
   @override
-  void dispose() {
-    _mobileController.dispose();
-    super.dispose();
+  void initState() {
+    super.initState();
+    _loginController.isEmailSelected.value = false;
   }
 
   @override
@@ -114,7 +116,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                           border: Border.all(color: Colors.black54, width: 0.8),
                         ),
                         child: TextFormField(
-                          controller: _mobileController,
+                          controller: _loginController.mobileController,
                           keyboardType: TextInputType.number,
                           maxLength: 10,
                           buildCounter:
@@ -148,7 +150,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       ),
 
                       const SizedBox(height: 24),
-                      SizedBox(
+                      Obx(() => SizedBox(
                         width: double.infinity,
                         height: 52,
                         child: ElevatedButton(
@@ -161,26 +163,21 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                             ),
                             elevation: 0,
                           ),
-                          onPressed: () {
-                            if (_mobileController.text.length == 10) {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      const OTPVerificationScreen(),
-                                ),
-                              );
-                            } else {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                  content: Text(
-                                    "Please enter valid 10 digit mobile number",
+                          onPressed: _loginController.isLoading.value
+                              ? null
+                              : () {
+                                  _loginController.sendOtp();
+                                },
+                          child: _loginController.isLoading.value
+                              ? const SizedBox(
+                                  height: 20,
+                                  width: 20,
+                                  child: CircularProgressIndicator(
+                                    color: Colors.black,
+                                    strokeWidth: 2,
                                   ),
-                                ),
-                              );
-                            }
-                          },
-                          child: const Text(
+                                )
+                              : const Text(
                             "Next",
                             style: TextStyle(
                               fontSize: 16,
@@ -189,7 +186,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                             ),
                           ),
                         ),
-                      ),
+                      )),
                       const SizedBox(height: 24),
 
                       const Text(

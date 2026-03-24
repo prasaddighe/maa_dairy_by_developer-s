@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'package:app/screens/home_screen.dart';
+import 'package:app/screens/otp_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -13,18 +15,6 @@ class LoginController extends GetxController {
   var isChecked = false.obs;
   var isEmailSelected = true.obs;
   var isOtpSent = false.obs;
-
-  void login() {
-    if (isEmailSelected.value) {
-      _loginWithEmail();
-    } else {
-      if (isOtpSent.value) {
-        _verifyOtp();
-      } else {
-        _sendOtp();
-      }
-    }
-  }
 
   void _loginWithEmail() async {
     if (emailController.text.isEmpty || passwordController.text.isEmpty) {
@@ -91,11 +81,11 @@ class LoginController extends GetxController {
     }
   }
 
-  void _sendOtp() async {
-    if (mobileController.text.isEmpty) {
+  void sendOtp() async {
+    if (mobileController.text.isEmpty || mobileController.text.length != 10) {
       Get.snackbar(
         'Error',
-        'Please enter mobile number',
+        'Please enter a valid 10-digit mobile number',
         snackPosition: SnackPosition.BOTTOM,
         backgroundColor: Colors.redAccent,
         colorText: Colors.white,
@@ -134,6 +124,7 @@ class LoginController extends GetxController {
           backgroundColor: Colors.green,
           colorText: Colors.white,
         );
+        Get.to(() => const OTPVerificationScreen());
       } else {
         final errorData = jsonDecode(response.body);
         Get.snackbar(
@@ -158,11 +149,11 @@ class LoginController extends GetxController {
     }
   }
 
-  void _verifyOtp() async {
-    if (otpController.text.isEmpty) {
+  void verifyOtp() async {
+    if (otpController.text.isEmpty || otpController.text.length != 6) {
       Get.snackbar(
         'Error',
-        'Please enter OTP',
+        'Please enter a valid 6-digit OTP',
         snackPosition: SnackPosition.BOTTOM,
         backgroundColor: Colors.redAccent,
         colorText: Colors.white,
@@ -200,6 +191,7 @@ class LoginController extends GetxController {
           backgroundColor: Colors.green,
           colorText: Colors.white,
         );
+        Get.offAll(() => const HomeScreen());
       } else {
         final errorData = jsonDecode(response.body);
         Get.snackbar(
