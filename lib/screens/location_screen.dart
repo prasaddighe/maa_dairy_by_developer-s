@@ -1,3 +1,4 @@
+import 'package:app/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
@@ -301,28 +302,36 @@ class _DeliveryLocationScreenState extends State<DeliveryLocationScreen> {
                     SizedBox(
                       width: double.infinity,
                       height: 52,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor:
-                              const Color.fromRGBO(120, 107, 81, 1),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          elevation: 0,
-                        ),
-                        onPressed: () {
+                      child: InkWell(
+                        onTap: () {
                           if (_selectedAddress.isNotEmpty) {
                             print("Selected: $_selectedAddress");
+
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    HomeScreen(),
+                              ),
+                            );
                           } else {
                             _showSnackBar("Please select a delivery location");
                           }
                         },
+                        borderRadius: BorderRadius.circular(10),
+                        child: Container(
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            color: const Color.fromRGBO(120, 107, 81, 1),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
                         child: const Text(
                           "Next",
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w900,
                             color: Colors.black,
+                            ),
                           ),
                         ),
                       ),
