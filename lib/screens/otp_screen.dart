@@ -1,4 +1,4 @@
-import 'package:app/screens/location_screen.dart';
+import 'package:app/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
 
@@ -25,7 +25,7 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
       print("Entered OTP: $otp");
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => const DeliveryLocationScreen()),
+        MaterialPageRoute(builder: (context) => const HomeScreen()),
       );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
