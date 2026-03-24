@@ -1,5 +1,6 @@
 import 'package:app/screens/otp_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
@@ -57,7 +58,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               style: TextStyle(
                 fontSize: 40,
                 fontWeight: FontWeight.w700,
-                color: Color.fromRGBO(78, 67, 46, 1), 
+                color: Color.fromRGBO(78, 67, 46, 1),
                 letterSpacing: 1.2,
               ),
             ),
@@ -76,7 +77,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             Expanded(
               child: Container(
                 width: double.infinity,
-                padding: const EdgeInsets.only(top: 35, left: 25, right: 25, bottom: 20),
+                padding: const EdgeInsets.only(
+                  top: 35, left: 25, right: 25, bottom: 20 ),
                 decoration: const BoxDecoration(
                   color: Color(0xFFF3F7FA),
                   borderRadius: BorderRadius.only(
@@ -95,7 +97,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                         ),
                       ),
                       const SizedBox(height: 8),
-                      
+
                       const Text(
                         "Fresh Day's For You",
                         style: TextStyle(
@@ -111,9 +113,24 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                           borderRadius: BorderRadius.circular(10),
                           border: Border.all(color: Colors.black54, width: 0.8),
                         ),
-                        child: TextField(
+                        child: TextFormField(
                           controller: _mobileController,
-                          keyboardType: TextInputType.phone,
+                          keyboardType: TextInputType.number,
+                          maxLength: 10,
+                          buildCounter:
+                              (
+                                BuildContext context, {
+                                required int currentLength,
+                                required bool isFocused,
+                                required int? maxLength,
+                              }) {
+                                return null;
+                              },
+
+                          inputFormatters: [
+                            FilteringTextInputFormatter.digitsOnly,
+                          ],
+
                           decoration: const InputDecoration(
                             hintText: "Enter Mobile Number",
                             hintStyle: TextStyle(
@@ -136,7 +153,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                         height: 52,
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color.fromRGBO(120, 107, 81, 1), 
+                            backgroundColor: const Color.fromRGBO(
+                              120, 107, 81, 1,
+                            ),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10),
                             ),
@@ -183,7 +202,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       ),
 
                       const SizedBox(height: 20),
-              
+
                       Row(
                         children: [
                           _socialButton(
@@ -227,11 +246,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               imageUrl,
               height: 22,
               width: 22,
-              errorBuilder: (context, error, stackTrace) => Icon(
-                fallbackIcon,
-                size: 24,
-                color: Colors.black87,
-              ),
+              errorBuilder: (context, error, stackTrace) =>
+                  Icon(fallbackIcon, size: 24, color: Colors.black87),
             ),
             const SizedBox(width: 10),
             Text(
